@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Appwrite</id>
+    <version>1.0.0</version>
+    <authors>Appwrite Team</authors>
+    <license type="expression">BSD-3-Clause</license>
+    <licenseUrl>https://licenses.nuget.org/BSD-3-Clause</licenseUrl>
+    <icon>icon.png</icon>
+    <projectUrl>https://github.com/appwrite/sdk-for-dotnet</projectUrl>
+    <description>Appwrite is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API</description>
+    <repository type="git" url="https://github.com/appwrite/sdk-for-dotnet" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.4" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Newtonsoft.Json" version="13.0.3" exclude="Build,Analyzers" />
+        <dependency id="System.Net.Http" version="4.3.4" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/Appwrite.dll" target="lib/net461/Appwrite.dll" />
+    <file src="/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/netstandard2.0/Appwrite.dll" target="lib/netstandard2.0/Appwrite.dll" />
+    <file src="/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/icon.png" target="icon.png" />
+  </files>
+</package>

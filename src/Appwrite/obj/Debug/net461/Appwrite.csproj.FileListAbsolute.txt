@@ -1,0 +1,16 @@
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/Appwrite.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/Appwrite.pdb
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/Newtonsoft.Json.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/System.Net.Http.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/System.Security.Cryptography.Algorithms.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/System.Security.Cryptography.Encoding.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/System.Security.Cryptography.Primitives.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/bin/Debug/net461/System.Security.Cryptography.X509Certificates.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.csproj.AssemblyReference.cache
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.GeneratedMSBuildEditorConfig.editorconfig
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.AssemblyInfoInputs.cache
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.AssemblyInfo.cs
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.csproj.CoreCompileInputs.cache
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.csproj.CopyComplete
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.dll
+/Users/jakebarnby/Local/appwrite/app/sdks/server-dotnet/src/Appwrite/obj/Debug/net461/Appwrite.pdb
