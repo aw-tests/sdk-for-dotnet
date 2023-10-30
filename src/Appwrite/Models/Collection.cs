@@ -65,12 +65,12 @@ namespace Appwrite.Models
         }
 
         public static Collection From(Dictionary<string, object> map) => new Collection(
-            id: (string)map["$id"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
+            id: map["$id"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
             permissions: ((JArray)map["$permissions"]).ToObject<List<object>>(),
-            databaseId: (string)map["databaseId"],
-            name: (string)map["name"],
+            databaseId: map["databaseId"].ToString(),
+            name: map["name"].ToString(),
             enabled: (bool)map["enabled"],
             documentSecurity: (bool)map["documentSecurity"],
             attributes: ((JArray)map["attributes"]).ToObject<List<object>>(),

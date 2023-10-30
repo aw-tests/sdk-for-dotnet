@@ -25,8 +25,8 @@ namespace Appwrite.Models
         }
 
         public static Country From(Dictionary<string, object> map) => new Country(
-            name: (string)map["name"],
-            code: (string)map["code"]
+            name: map["name"].ToString(),
+            code: map["code"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

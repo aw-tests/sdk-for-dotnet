@@ -20,7 +20,7 @@ namespace Appwrite.Models
         }
 
         public static AlgoBcrypt From(Dictionary<string, object> map) => new AlgoBcrypt(
-            type: (string)map["type"]
+            type: map["type"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Appwrite.Models;
+using Appwrite.Enums;
 
 namespace Appwrite.Services
 {
@@ -14,20 +15,20 @@ namespace Appwrite.Services
         }
 
         /// <summary>
-        /// Get Account
+        /// Get account
         /// <para>
-        /// Get currently logged in user data as JSON object.
+        /// Get the currently logged in user.
         /// </para>
         /// </summary>
         public Task<Models.User> Get()
         {
-            var path = "/account";
+            var apiPath = "/account";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -40,15 +41,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update Email
+        /// Update email
         /// <para>
         /// Update currently logged in user account email address. After changing user
         /// address, the user confirmation status will get reset. A new confirmation
@@ -62,15 +63,15 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.User> UpdateEmail(string email, string password)
         {
-            var path = "/account/email";
+            var apiPath = "/account/email";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "email", email },
                 { "password", password }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -83,30 +84,97 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Logs
+        /// List Identities
         /// <para>
-        /// Get currently logged in user list of latest security activity logs. Each
-        /// log returns user IP address, location and date and time of log.
+        /// Get the list of identities for the currently logged in user.
         /// </para>
         /// </summary>
-        public Task<Models.LogList> ListLogs(List<string>? queries = null)
+        public Task<Models.IdentityList> ListIdentities(string? queries = null)
         {
-            var path = "/account/logs";
+            var apiPath = "/account/identities";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "queries", queries }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
+            {
+                { "content-type", "application/json" }
+            };
+
+
+
+            static Models.IdentityList Convert(Dictionary<string, object> it) =>
+                Models.IdentityList.From(map: it);
+
+
+            return _client.Call<Models.IdentityList>(
+                method: "GET",
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                convert: Convert);
+
+        }
+
+        /// <summary>
+        /// Delete Identity
+        /// <para>
+        /// Delete an identity by its unique ID.
+        /// </para>
+        /// </summary>
+        public Task<object> DeleteIdentity(string identityId)
+        {
+            var apiPath = "/account/identities/{identityId}"
+                .Replace("{identityId}", identityId);
+
+            var apiParameters = new Dictionary<string, object?>()
+            {
+            };
+
+            var apiHeaders = new Dictionary<string, string>()
+            {
+                { "content-type", "application/json" }
+            };
+
+
+
+
+
+            return _client.Call<object>(
+                method: "DELETE",
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
+        }
+
+        /// <summary>
+        /// List logs
+        /// <para>
+        /// Get the list of latest security activity logs for the currently logged in
+        /// user. Each log returns user IP address, location and date and time of log.
+        /// </para>
+        /// </summary>
+        public Task<Models.LogList> ListLogs(List<string>? queries = null)
+        {
+            var apiPath = "/account/logs";
+
+            var apiParameters = new Dictionary<string, object?>()
+            {
+                { "queries", queries }
+            };
+
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -119,29 +187,29 @@ namespace Appwrite.Services
 
             return _client.Call<Models.LogList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update Name
+        /// Update name
         /// <para>
         /// Update currently logged in user account name.
         /// </para>
         /// </summary>
         public Task<Models.User> UpdateName(string name)
         {
-            var path = "/account/name";
+            var apiPath = "/account/name";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "name", name }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -154,15 +222,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update Password
+        /// Update password
         /// <para>
         /// Update currently logged in user password. For validation, user is required
         /// to pass in the new password, and the old password. For users created with
@@ -171,15 +239,15 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.User> UpdatePassword(string password, string? oldPassword = null)
         {
-            var path = "/account/password";
+            var apiPath = "/account/password";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "password", password },
                 { "oldPassword", oldPassword }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -192,34 +260,34 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update Phone
+        /// Update phone
         /// <para>
         /// Update the currently logged in user's phone number. After updating the
         /// phone number, the phone verification status will be reset. A confirmation
         /// SMS is not sent automatically, however you can use the [POST
-        /// /account/verification/phone](/docs/client/account#accountCreatePhoneVerification)
+        /// /account/verification/phone](https://appwrite.io/docs/references/cloud/client-web/account#createPhoneVerification)
         /// endpoint to send a confirmation SMS.
         /// </para>
         /// </summary>
         public Task<Models.User> UpdatePhone(string phone, string password)
         {
-            var path = "/account/phone";
+            var apiPath = "/account/phone";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "phone", phone },
                 { "password", password }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -232,28 +300,28 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Get Account Preferences
+        /// Get account preferences
         /// <para>
-        /// Get currently logged in user preferences as a key-value object.
+        /// Get the preferences as a key-value object for the currently logged in user.
         /// </para>
         /// </summary>
         public Task<Models.Preferences> GetPrefs()
         {
-            var path = "/account/prefs";
+            var apiPath = "/account/prefs";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -266,15 +334,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Preferences>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update Preferences
+        /// Update preferences
         /// <para>
         /// Update currently logged in user account preferences. The object you pass is
         /// stored as is, and replaces any previous value. The maximum allowed prefs
@@ -283,14 +351,14 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.User> UpdatePrefs(object prefs)
         {
-            var path = "/account/prefs";
+            var apiPath = "/account/prefs";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "prefs", prefs }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -303,37 +371,37 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Password Recovery
+        /// Create password recovery
         /// <para>
         /// Sends the user an email with a temporary secret key for password reset.
         /// When the user clicks the confirmation link he is redirected back to your
         /// app password reset URL with the secret key and email address values
         /// attached to the URL query string. Use the query string params to submit a
         /// request to the [PUT
-        /// /account/recovery](/docs/client/account#accountUpdateRecovery) endpoint to
-        /// complete the process. The verification link sent to the user's email
-        /// address is valid for 1 hour.
+        /// /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#updateRecovery)
+        /// endpoint to complete the process. The verification link sent to the user's
+        /// email address is valid for 1 hour.
         /// </para>
         /// </summary>
         public Task<Models.Token> CreateRecovery(string email, string url)
         {
-            var path = "/account/recovery";
+            var apiPath = "/account/recovery";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "email", email },
                 { "url", url }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -346,20 +414,21 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "POST",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Password Recovery (confirmation)
+        /// Create password recovery (confirmation)
         /// <para>
         /// Use this endpoint to complete the user account password reset. Both the
         /// **userId** and **secret** arguments will be passed as query parameters to
         /// the redirect URL you have provided when sending your request to the [POST
-        /// /account/recovery](/docs/client/account#accountCreateRecovery) endpoint.
+        /// /account/recovery](https://appwrite.io/docs/references/cloud/client-web/account#createRecovery)
+        /// endpoint.
         /// 
         /// Please note that in order to avoid a [Redirect
         /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md)
@@ -369,9 +438,9 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Token> UpdateRecovery(string userId, string secret, string password, string passwordAgain)
         {
-            var path = "/account/recovery";
+            var apiPath = "/account/recovery";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "userId", userId },
                 { "secret", secret },
@@ -379,7 +448,7 @@ namespace Appwrite.Services
                 { "passwordAgain", passwordAgain }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -392,29 +461,29 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "PUT",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Sessions
+        /// List sessions
         /// <para>
-        /// Get currently logged in user list of active sessions across different
-        /// devices.
+        /// Get the list of active sessions across different devices for the currently
+        /// logged in user.
         /// </para>
         /// </summary>
         public Task<Models.SessionList> ListSessions()
         {
-            var path = "/account/sessions";
+            var apiPath = "/account/sessions";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -427,15 +496,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.SessionList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Delete Sessions
+        /// Delete sessions
         /// <para>
         /// Delete all sessions from the user account and remove any sessions cookies
         /// from the end client.
@@ -443,13 +512,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<object> DeleteSessions()
         {
-            var path = "/account/sessions";
+            var apiPath = "/account/sessions";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -460,14 +529,14 @@ namespace Appwrite.Services
 
             return _client.Call<object>(
                 method: "DELETE",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
 
         }
 
         /// <summary>
-        /// Get Session
+        /// Get session
         /// <para>
         /// Use this endpoint to get a logged in user's session using a Session ID.
         /// Inputting 'current' will return the current session being used.
@@ -475,14 +544,14 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Session> GetSession(string sessionId)
         {
-            var path = "/account/sessions/{sessionId}"
+            var apiPath = "/account/sessions/{sessionId}"
                 .Replace("{sessionId}", sessionId);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -495,15 +564,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Session>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Update OAuth Session (Refresh Tokens)
+        /// Update OAuth session (refresh tokens)
         /// <para>
         /// Access tokens have limited lifespan and expire to mitigate security risks.
         /// If session was created using an OAuth provider, this route can be used to
@@ -512,14 +581,14 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Session> UpdateSession(string sessionId)
         {
-            var path = "/account/sessions/{sessionId}"
+            var apiPath = "/account/sessions/{sessionId}"
                 .Replace("{sessionId}", sessionId);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -532,32 +601,33 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Session>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Delete Session
+        /// Delete session
         /// <para>
-        /// Use this endpoint to log out the currently logged in user from all their
-        /// account sessions across all of their different devices. When using the
-        /// Session ID argument, only the unique session ID provided is deleted.
-        /// 
+        /// Logout the user. Use 'current' as the session ID to logout on this device,
+        /// use a session ID to logout on another device. If you're looking to logout
+        /// the user on all devices, use [Delete
+        /// Sessions](https://appwrite.io/docs/references/cloud/client-web/account#deleteSessions)
+        /// instead.
         /// </para>
         /// </summary>
         public Task<object> DeleteSession(string sessionId)
         {
-            var path = "/account/sessions/{sessionId}"
+            var apiPath = "/account/sessions/{sessionId}"
                 .Replace("{sessionId}", sessionId);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -568,14 +638,14 @@ namespace Appwrite.Services
 
             return _client.Call<object>(
                 method: "DELETE",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
 
         }
 
         /// <summary>
-        /// Update Status
+        /// Update status
         /// <para>
         /// Block the currently logged in user account. Behind the scene, the user
         /// record is not deleted but permanently blocked from any access. To
@@ -584,13 +654,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.User> UpdateStatus()
         {
-            var path = "/account/status";
+            var apiPath = "/account/status";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -603,15 +673,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.User>(
                 method: "PATCH",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Email Verification
+        /// Create email verification
         /// <para>
         /// Use this endpoint to send a verification message to your user email address
         /// to confirm they are the valid owners of that address. Both the **userId**
@@ -620,8 +690,8 @@ namespace Appwrite.Services
         /// should redirect the user back to your app and allow you to complete the
         /// verification process by verifying both the **userId** and **secret**
         /// parameters. Learn more about how to [complete the verification
-        /// process](/docs/client/account#accountUpdateEmailVerification). The
-        /// verification link sent to the user's email address is valid for 7 days.
+        /// process](https://appwrite.io/docs/references/cloud/client-web/account#updateVerification).
+        /// The verification link sent to the user's email address is valid for 7 days.
         /// 
         /// Please note that in order to avoid a [Redirect
         /// Attack](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md),
@@ -632,14 +702,14 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Token> CreateVerification(string url)
         {
-            var path = "/account/verification";
+            var apiPath = "/account/verification";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "url", url }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -652,15 +722,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "POST",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Email Verification (confirmation)
+        /// Create email verification (confirmation)
         /// <para>
         /// Use this endpoint to complete the user email verification process. Use both
         /// the **userId** and **secret** parameters that were attached to your app URL
@@ -670,15 +740,15 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Token> UpdateVerification(string userId, string secret)
         {
-            var path = "/account/verification";
+            var apiPath = "/account/verification";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "userId", userId },
                 { "secret", secret }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -691,33 +761,35 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "PUT",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Phone Verification
+        /// Create phone verification
         /// <para>
         /// Use this endpoint to send a verification SMS to the currently logged in
         /// user. This endpoint is meant for use after updating a user's phone number
-        /// using the [accountUpdatePhone](/docs/client/account#accountUpdatePhone)
+        /// using the
+        /// [accountUpdatePhone](https://appwrite.io/docs/references/cloud/client-web/account#updatePhone)
         /// endpoint. Learn more about how to [complete the verification
-        /// process](/docs/client/account#accountUpdatePhoneVerification). The
-        /// verification code sent to the user's phone number is valid for 15 minutes.
+        /// process](https://appwrite.io/docs/references/cloud/client-web/account#updatePhoneVerification).
+        /// The verification code sent to the user's phone number is valid for 15
+        /// minutes.
         /// </para>
         /// </summary>
         public Task<Models.Token> CreatePhoneVerification()
         {
-            var path = "/account/verification/phone";
+            var apiPath = "/account/verification/phone";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -730,15 +802,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "POST",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// Create Phone Verification (confirmation)
+        /// Create phone verification (confirmation)
         /// <para>
         /// Use this endpoint to complete the user phone verification process. Use the
         /// **userId** and **secret** that were sent to your user's phone number to
@@ -748,15 +820,15 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Token> UpdatePhoneVerification(string userId, string secret)
         {
-            var path = "/account/verification/phone";
+            var apiPath = "/account/verification/phone";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "userId", userId },
                 { "secret", secret }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -769,9 +841,9 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Token>(
                 method: "PUT",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }

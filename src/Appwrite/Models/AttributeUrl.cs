@@ -19,6 +19,9 @@ namespace Appwrite.Models
         [JsonProperty("status")]
         public string Status { get; private set; }
 
+        [JsonProperty("error")]
+        public string Error { get; private set; }
+
         [JsonProperty("required")]
         public bool Required { get; private set; }
 
@@ -35,6 +38,7 @@ namespace Appwrite.Models
             string key,
             string type,
             string status,
+            string error,
             bool required,
             bool? array,
             string format,
@@ -43,6 +47,7 @@ namespace Appwrite.Models
             Key = key;
             Type = type;
             Status = status;
+            Error = error;
             Required = required;
             Array = array;
             Format = format;
@@ -50,13 +55,14 @@ namespace Appwrite.Models
         }
 
         public static AttributeUrl From(Dictionary<string, object> map) => new AttributeUrl(
-            key: (string)map["key"],
-            type: (string)map["type"],
-            status: (string)map["status"],
+            key: map["key"].ToString(),
+            type: map["type"].ToString(),
+            status: map["status"].ToString(),
+            error: map["error"].ToString(),
             required: (bool)map["required"],
             array: (bool?)map["array"],
-            format: (string)map["format"],
-            xdefault: (string?)map["default"]
+            format: map["format"].ToString(),
+            xdefault: map["default"]?.ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()
@@ -64,6 +70,7 @@ namespace Appwrite.Models
             { "key", Key },
             { "type", Type },
             { "status", Status },
+            { "error", Error },
             { "required", Required },
             { "array", Array },
             { "format", Format },

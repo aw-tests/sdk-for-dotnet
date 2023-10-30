@@ -40,11 +40,11 @@ namespace Appwrite.Models
         }
 
         public static Token From(Dictionary<string, object> map) => new Token(
-            id: (string)map["$id"],
-            createdAt: (string)map["$createdAt"],
-            userId: (string)map["userId"],
-            secret: (string)map["secret"],
-            expire: (string)map["expire"]
+            id: map["$id"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            userId: map["userId"].ToString(),
+            secret: map["secret"].ToString(),
+            expire: map["expire"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

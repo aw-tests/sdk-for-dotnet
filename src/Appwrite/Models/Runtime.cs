@@ -50,12 +50,12 @@ namespace Appwrite.Models
         }
 
         public static Runtime From(Dictionary<string, object> map) => new Runtime(
-            id: (string)map["$id"],
-            name: (string)map["name"],
-            version: (string)map["version"],
-            xbase: (string)map["base"],
-            image: (string)map["image"],
-            logo: (string)map["logo"],
+            id: map["$id"].ToString(),
+            name: map["name"].ToString(),
+            version: map["version"].ToString(),
+            xbase: map["base"].ToString(),
+            image: map["image"].ToString(),
+            logo: map["logo"].ToString(),
             supports: ((JArray)map["supports"]).ToObject<List<object>>()
         );
 

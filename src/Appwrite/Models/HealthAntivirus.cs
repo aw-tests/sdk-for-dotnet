@@ -25,8 +25,8 @@ namespace Appwrite.Models
         }
 
         public static HealthAntivirus From(Dictionary<string, object> map) => new HealthAntivirus(
-            version: (string)map["version"],
-            status: (string)map["status"]
+            version: map["version"].ToString(),
+            status: map["status"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

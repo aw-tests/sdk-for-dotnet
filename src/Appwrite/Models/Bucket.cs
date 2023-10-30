@@ -75,16 +75,16 @@ namespace Appwrite.Models
         }
 
         public static Bucket From(Dictionary<string, object> map) => new Bucket(
-            id: (string)map["$id"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
+            id: map["$id"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
             permissions: ((JArray)map["$permissions"]).ToObject<List<object>>(),
             fileSecurity: (bool)map["fileSecurity"],
-            name: (string)map["name"],
+            name: map["name"].ToString(),
             enabled: (bool)map["enabled"],
             maximumFileSize: Convert.ToInt64(map["maximumFileSize"]),
             allowedFileExtensions: ((JArray)map["allowedFileExtensions"]).ToObject<List<object>>(),
-            compression: (string)map["compression"],
+            compression: map["compression"].ToString(),
             encryption: (bool)map["encryption"],
             antivirus: (bool)map["antivirus"]
         );

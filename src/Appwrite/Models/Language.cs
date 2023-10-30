@@ -30,9 +30,9 @@ namespace Appwrite.Models
         }
 
         public static Language From(Dictionary<string, object> map) => new Language(
-            name: (string)map["name"],
-            code: (string)map["code"],
-            nativeName: (string)map["nativeName"]
+            name: map["name"].ToString(),
+            code: map["code"].ToString(),
+            nativeName: map["nativeName"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

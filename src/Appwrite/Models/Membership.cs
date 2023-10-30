@@ -75,16 +75,16 @@ namespace Appwrite.Models
         }
 
         public static Membership From(Dictionary<string, object> map) => new Membership(
-            id: (string)map["$id"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
-            userId: (string)map["userId"],
-            userName: (string)map["userName"],
-            userEmail: (string)map["userEmail"],
-            teamId: (string)map["teamId"],
-            teamName: (string)map["teamName"],
-            invited: (string)map["invited"],
-            joined: (string)map["joined"],
+            id: map["$id"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
+            userId: map["userId"].ToString(),
+            userName: map["userName"].ToString(),
+            userEmail: map["userEmail"].ToString(),
+            teamId: map["teamId"].ToString(),
+            teamName: map["teamName"].ToString(),
+            invited: map["invited"].ToString(),
+            joined: map["joined"].ToString(),
             confirm: (bool)map["confirm"],
             roles: ((JArray)map["roles"]).ToObject<List<object>>()
         );

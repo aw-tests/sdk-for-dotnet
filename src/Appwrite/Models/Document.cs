@@ -49,11 +49,11 @@ namespace Appwrite.Models
         }
 
         public static Document From(Dictionary<string, object> map) => new Document(
-            id: (string)map["$id"],
-            collectionId: (string)map["$collectionId"],
-            databaseId: (string)map["$databaseId"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
+            id: map["$id"].ToString(),
+            collectionId: map["$collectionId"].ToString(),
+            databaseId: map["$databaseId"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
             permissions: ((JArray)map["$permissions"]).ToObject<List<object>>(),
             data: map
         );

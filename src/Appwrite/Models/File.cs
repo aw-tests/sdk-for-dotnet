@@ -70,14 +70,14 @@ namespace Appwrite.Models
         }
 
         public static File From(Dictionary<string, object> map) => new File(
-            id: (string)map["$id"],
-            bucketId: (string)map["bucketId"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
+            id: map["$id"].ToString(),
+            bucketId: map["bucketId"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
             permissions: ((JArray)map["$permissions"]).ToObject<List<object>>(),
-            name: (string)map["name"],
-            signature: (string)map["signature"],
-            mimeType: (string)map["mimeType"],
+            name: map["name"].ToString(),
+            signature: map["signature"].ToString(),
+            mimeType: map["mimeType"].ToString(),
             sizeOriginal: Convert.ToInt64(map["sizeOriginal"]),
             chunksTotal: Convert.ToInt64(map["chunksTotal"]),
             chunksUploaded: Convert.ToInt64(map["chunksUploaded"])

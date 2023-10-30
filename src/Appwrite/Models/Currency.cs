@@ -50,13 +50,13 @@ namespace Appwrite.Models
         }
 
         public static Currency From(Dictionary<string, object> map) => new Currency(
-            symbol: (string)map["symbol"],
-            name: (string)map["name"],
-            symbolNative: (string)map["symbolNative"],
+            symbol: map["symbol"].ToString(),
+            name: map["name"].ToString(),
+            symbolNative: map["symbolNative"].ToString(),
             decimalDigits: Convert.ToInt64(map["decimalDigits"]),
             rounding: Convert.ToDouble(map["rounding"]),
-            code: (string)map["code"],
-            namePlural: (string)map["namePlural"]
+            code: map["code"].ToString(),
+            namePlural: map["namePlural"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

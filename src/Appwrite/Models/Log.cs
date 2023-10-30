@@ -120,27 +120,27 @@ namespace Appwrite.Models
         }
 
         public static Log From(Dictionary<string, object> map) => new Log(
-            xevent: (string)map["event"],
-            userId: (string)map["userId"],
-            userEmail: (string)map["userEmail"],
-            userName: (string)map["userName"],
-            mode: (string)map["mode"],
-            ip: (string)map["ip"],
-            time: (string)map["time"],
-            osCode: (string)map["osCode"],
-            osName: (string)map["osName"],
-            osVersion: (string)map["osVersion"],
-            clientType: (string)map["clientType"],
-            clientCode: (string)map["clientCode"],
-            clientName: (string)map["clientName"],
-            clientVersion: (string)map["clientVersion"],
-            clientEngine: (string)map["clientEngine"],
-            clientEngineVersion: (string)map["clientEngineVersion"],
-            deviceName: (string)map["deviceName"],
-            deviceBrand: (string)map["deviceBrand"],
-            deviceModel: (string)map["deviceModel"],
-            countryCode: (string)map["countryCode"],
-            countryName: (string)map["countryName"]
+            xevent: map["event"].ToString(),
+            userId: map["userId"].ToString(),
+            userEmail: map["userEmail"].ToString(),
+            userName: map["userName"].ToString(),
+            mode: map["mode"].ToString(),
+            ip: map["ip"].ToString(),
+            time: map["time"].ToString(),
+            osCode: map["osCode"].ToString(),
+            osName: map["osName"].ToString(),
+            osVersion: map["osVersion"].ToString(),
+            clientType: map["clientType"].ToString(),
+            clientCode: map["clientCode"].ToString(),
+            clientName: map["clientName"].ToString(),
+            clientVersion: map["clientVersion"].ToString(),
+            clientEngine: map["clientEngine"].ToString(),
+            clientEngineVersion: map["clientEngineVersion"].ToString(),
+            deviceName: map["deviceName"].ToString(),
+            deviceBrand: map["deviceBrand"].ToString(),
+            deviceModel: map["deviceModel"].ToString(),
+            countryCode: map["countryCode"].ToString(),
+            countryName: map["countryName"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

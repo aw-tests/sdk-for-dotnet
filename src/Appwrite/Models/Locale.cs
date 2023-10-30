@@ -50,13 +50,13 @@ namespace Appwrite.Models
         }
 
         public static Locale From(Dictionary<string, object> map) => new Locale(
-            ip: (string)map["ip"],
-            countryCode: (string)map["countryCode"],
-            country: (string)map["country"],
-            continentCode: (string)map["continentCode"],
-            continent: (string)map["continent"],
+            ip: map["ip"].ToString(),
+            countryCode: map["countryCode"].ToString(),
+            country: map["country"].ToString(),
+            continentCode: map["continentCode"].ToString(),
+            continent: map["continent"].ToString(),
             eu: (bool)map["eu"],
-            currency: (string)map["currency"]
+            currency: map["currency"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()

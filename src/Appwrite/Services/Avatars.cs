@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Appwrite.Models;
+using Appwrite.Enums;
 
 namespace Appwrite.Services
 {
@@ -14,12 +15,13 @@ namespace Appwrite.Services
         }
 
         /// <summary>
-        /// Get Browser Icon
+        /// Get browser icon
         /// <para>
         /// You can use this endpoint to show different browser icons to your users.
         /// The code argument receives the browser code as it appears in your user [GET
-        /// /account/sessions](/docs/client/account#accountGetSessions) endpoint. Use
-        /// width, height and quality arguments to change the output settings.
+        /// /account/sessions](https://appwrite.io/docs/references/cloud/client-web/account#getSessions)
+        /// endpoint. Use width, height and quality arguments to change the output
+        /// settings.
         /// 
         /// When one dimension is specified and the other is 0, the image is scaled
         /// with preserved aspect ratio. If both dimensions are 0, the API provides an
@@ -27,19 +29,19 @@ namespace Appwrite.Services
         /// of image returned is 100x100px.
         /// </para>
         /// </summary>
-        public Task<byte[]> GetBrowser(string code, long? width = null, long? height = null, long? quality = null)
+        public Task<byte[]> GetBrowser(Browser code, long? width = null, long? height = null, long? quality = null)
         {
-            var path = "/avatars/browsers/{code}"
-                .Replace("{code}", code);
+            var apiPath = "/avatars/browsers/{code}"
+                .Replace("{code}", code.Value);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "width", width },
                 { "height", height },
                 { "quality", quality }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -47,13 +49,14 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get Credit Card Icon
+        /// Get credit card icon
         /// <para>
         /// The credit card endpoint will return you the icon of the credit card
         /// provider you need. Use width, height and quality arguments to change the
@@ -66,19 +69,19 @@ namespace Appwrite.Services
         /// 
         /// </para>
         /// </summary>
-        public Task<byte[]> GetCreditCard(string code, long? width = null, long? height = null, long? quality = null)
+        public Task<byte[]> GetCreditCard(CreditCard code, long? width = null, long? height = null, long? quality = null)
         {
-            var path = "/avatars/credit-cards/{code}"
-                .Replace("{code}", code);
+            var apiPath = "/avatars/credit-cards/{code}"
+                .Replace("{code}", code.Value);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "width", width },
                 { "height", height },
                 { "quality", quality }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -86,13 +89,14 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get Favicon
+        /// Get favicon
         /// <para>
         /// Use this endpoint to fetch the favorite icon (AKA favicon) of any remote
         /// website URL.
@@ -101,14 +105,14 @@ namespace Appwrite.Services
         /// </summary>
         public Task<byte[]> GetFavicon(string url)
         {
-            var path = "/avatars/favicon";
+            var apiPath = "/avatars/favicon";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "url", url }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -116,18 +120,19 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get Country Flag
+        /// Get country flag
         /// <para>
         /// You can use this endpoint to show different country flags icons to your
         /// users. The code argument receives the 2 letter country code. Use width,
         /// height and quality arguments to change the output settings. Country codes
-        /// follow the [ISO 3166-1](http://en.wikipedia.org/wiki/ISO_3166-1) standard.
+        /// follow the [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1) standard.
         /// 
         /// When one dimension is specified and the other is 0, the image is scaled
         /// with preserved aspect ratio. If both dimensions are 0, the API provides an
@@ -136,19 +141,19 @@ namespace Appwrite.Services
         /// 
         /// </para>
         /// </summary>
-        public Task<byte[]> GetFlag(string code, long? width = null, long? height = null, long? quality = null)
+        public Task<byte[]> GetFlag(Flag code, long? width = null, long? height = null, long? quality = null)
         {
-            var path = "/avatars/flags/{code}"
-                .Replace("{code}", code);
+            var apiPath = "/avatars/flags/{code}"
+                .Replace("{code}", code.Value);
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "width", width },
                 { "height", height },
                 { "quality", quality }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -156,13 +161,14 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get Image from URL
+        /// Get image from URL
         /// <para>
         /// Use this endpoint to fetch a remote image URL and crop it to any image size
         /// you want. This endpoint is very useful if you need to crop and display
@@ -178,16 +184,16 @@ namespace Appwrite.Services
         /// </summary>
         public Task<byte[]> GetImage(string url, long? width = null, long? height = null)
         {
-            var path = "/avatars/image";
+            var apiPath = "/avatars/image";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "url", url },
                 { "width", width },
                 { "height", height }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -195,13 +201,14 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get User Initials
+        /// Get user initials
         /// <para>
         /// Use this endpoint to show your user initials avatar icon on your website or
         /// app. By default, this route will try to print your logged-in user name or
@@ -223,9 +230,9 @@ namespace Appwrite.Services
         /// </summary>
         public Task<byte[]> GetInitials(string? name = null, long? width = null, long? height = null, string? background = null)
         {
-            var path = "/avatars/initials";
+            var apiPath = "/avatars/initials";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "name", name },
                 { "width", width },
@@ -233,7 +240,7 @@ namespace Appwrite.Services
                 { "background", background }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -241,13 +248,14 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
         /// <summary>
-        /// Get QR Code
+        /// Get QR code
         /// <para>
         /// Converts a given plain text to a QR code image. You can use the query
         /// parameters to change the size and style of the resulting image.
@@ -256,9 +264,9 @@ namespace Appwrite.Services
         /// </summary>
         public Task<byte[]> GetQR(string text, long? size = null, long? margin = null, bool? download = null)
         {
-            var path = "/avatars/qr";
+            var apiPath = "/avatars/qr";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
                 { "text", text },
                 { "size", size },
@@ -266,7 +274,7 @@ namespace Appwrite.Services
                 { "download", download }
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -274,9 +282,10 @@ namespace Appwrite.Services
 
             return _client.Call<byte[]>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!);
+
         }
 
     }

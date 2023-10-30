@@ -45,10 +45,10 @@ namespace Appwrite.Models
         }
 
         public static Team From(Dictionary<string, object> map) => new Team(
-            id: (string)map["$id"],
-            createdAt: (string)map["$createdAt"],
-            updatedAt: (string)map["$updatedAt"],
-            name: (string)map["name"],
+            id: map["$id"].ToString(),
+            createdAt: map["$createdAt"].ToString(),
+            updatedAt: map["$updatedAt"].ToString(),
+            name: map["name"].ToString(),
             total: Convert.ToInt64(map["total"]),
             prefs: Preferences.From(map: ((JObject)map["prefs"]).ToObject<Dictionary<string, object>>()!)
         );

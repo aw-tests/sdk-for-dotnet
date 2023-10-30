@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Appwrite.Models;
+using Appwrite.Enums;
 
 namespace Appwrite.Services
 {
@@ -14,7 +15,7 @@ namespace Appwrite.Services
         }
 
         /// <summary>
-        /// Get User Locale
+        /// Get user locale
         /// <para>
         /// Get the current user location based on IP. Returns an object with user
         /// country code, country name, continent name, continent code, ip address and
@@ -26,13 +27,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.Locale> Get()
         {
-            var path = "/locale";
+            var apiPath = "/locale";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -45,15 +46,50 @@ namespace Appwrite.Services
 
             return _client.Call<Models.Locale>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Continents
+        /// List Locale Codes
+        /// <para>
+        /// List of all locale codes in [ISO
+        /// 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+        /// </para>
+        /// </summary>
+        public Task<Models.LocaleCodeList> ListCodes()
+        {
+            var apiPath = "/locale/codes";
+
+            var apiParameters = new Dictionary<string, object?>()
+            {
+            };
+
+            var apiHeaders = new Dictionary<string, string>()
+            {
+                { "content-type", "application/json" }
+            };
+
+
+
+            static Models.LocaleCodeList Convert(Dictionary<string, object> it) =>
+                Models.LocaleCodeList.From(map: it);
+
+
+            return _client.Call<Models.LocaleCodeList>(
+                method: "GET",
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                convert: Convert);
+
+        }
+
+        /// <summary>
+        /// List continents
         /// <para>
         /// List of all continents. You can use the locale header to get the data in a
         /// supported language.
@@ -61,13 +97,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.ContinentList> ListContinents()
         {
-            var path = "/locale/continents";
+            var apiPath = "/locale/continents";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -80,15 +116,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.ContinentList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Countries
+        /// List countries
         /// <para>
         /// List of all countries. You can use the locale header to get the data in a
         /// supported language.
@@ -96,13 +132,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.CountryList> ListCountries()
         {
-            var path = "/locale/countries";
+            var apiPath = "/locale/countries";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -115,15 +151,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.CountryList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List EU Countries
+        /// List EU countries
         /// <para>
         /// List of all countries that are currently members of the EU. You can use the
         /// locale header to get the data in a supported language.
@@ -131,13 +167,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.CountryList> ListCountriesEU()
         {
-            var path = "/locale/countries/eu";
+            var apiPath = "/locale/countries/eu";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -150,15 +186,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.CountryList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Countries Phone Codes
+        /// List countries phone codes
         /// <para>
         /// List of all countries phone codes. You can use the locale header to get the
         /// data in a supported language.
@@ -166,13 +202,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.PhoneList> ListCountriesPhones()
         {
-            var path = "/locale/countries/phones";
+            var apiPath = "/locale/countries/phones";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -185,15 +221,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.PhoneList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Currencies
+        /// List currencies
         /// <para>
         /// List of all currencies, including currency symbol, name, plural, and
         /// decimal digits for all major and minor currencies. You can use the locale
@@ -202,13 +238,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.CurrencyList> ListCurrencies()
         {
-            var path = "/locale/currencies";
+            var apiPath = "/locale/currencies";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -221,15 +257,15 @@ namespace Appwrite.Services
 
             return _client.Call<Models.CurrencyList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }
 
         /// <summary>
-        /// List Languages
+        /// List languages
         /// <para>
         /// List of all languages classified by ISO 639-1 including 2-letter code, name
         /// in English, and name in the respective language.
@@ -237,13 +273,13 @@ namespace Appwrite.Services
         /// </summary>
         public Task<Models.LanguageList> ListLanguages()
         {
-            var path = "/locale/languages";
+            var apiPath = "/locale/languages";
 
-            var parameters = new Dictionary<string, object?>()
+            var apiParameters = new Dictionary<string, object?>()
             {
             };
 
-            var headers = new Dictionary<string, string>()
+            var apiHeaders = new Dictionary<string, string>()
             {
                 { "content-type", "application/json" }
             };
@@ -256,9 +292,9 @@ namespace Appwrite.Services
 
             return _client.Call<Models.LanguageList>(
                 method: "GET",
-                path: path,
-                headers: headers,
-                parameters: parameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
+                path: apiPath,
+                headers: apiHeaders,
+                parameters: apiParameters.Where(it => it.Value != null).ToDictionary(it => it.Key, it => it.Value)!,
                 convert: Convert);
 
         }

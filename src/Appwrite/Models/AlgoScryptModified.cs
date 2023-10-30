@@ -35,10 +35,10 @@ namespace Appwrite.Models
         }
 
         public static AlgoScryptModified From(Dictionary<string, object> map) => new AlgoScryptModified(
-            type: (string)map["type"],
-            salt: (string)map["salt"],
-            saltSeparator: (string)map["saltSeparator"],
-            signerKey: (string)map["signerKey"]
+            type: map["type"].ToString(),
+            salt: map["salt"].ToString(),
+            saltSeparator: map["saltSeparator"].ToString(),
+            signerKey: map["signerKey"].ToString()
         );
 
         public Dictionary<string, object?> ToMap() => new Dictionary<string, object?>()
