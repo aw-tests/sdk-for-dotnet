@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class Flag
+    public class Flag : IEnum
     {
         public string Value { get; private set; }
 

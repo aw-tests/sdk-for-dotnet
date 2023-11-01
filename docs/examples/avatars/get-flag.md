@@ -11,4 +11,4 @@ var client = new Client()
 var avatars = new Avatars(client);
 
 byte[] result = await avatars.GetFlag(
-    code: Flag.Af);
+    code: Flag.Afghanistan);

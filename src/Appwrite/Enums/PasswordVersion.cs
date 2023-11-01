@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class PasswordVersion
+    public class PasswordVersion : IEnum
     {
         public string Value { get; private set; }
 

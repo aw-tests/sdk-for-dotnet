@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class CreditCard
+    public class CreditCard : IEnum
     {
         public string Value { get; private set; }
 

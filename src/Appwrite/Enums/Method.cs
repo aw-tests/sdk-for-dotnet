@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class Method
+    public class Method : IEnum
     {
         public string Value { get; private set; }
 

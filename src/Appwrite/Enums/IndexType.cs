@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class IndexType
+    public class IndexType : IEnum
     {
         public string Value { get; private set; }
 

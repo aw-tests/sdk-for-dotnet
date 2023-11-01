@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class RelationshipType
+    public class RelationshipType : IEnum
     {
         public string Value { get; private set; }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class ImageFormat
+    public class ImageFormat : IEnum
     {
         public string Value { get; private set; }
 

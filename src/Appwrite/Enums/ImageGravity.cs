@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class ImageGravity
+    public class ImageGravity : IEnum
     {
         public string Value { get; private set; }
 

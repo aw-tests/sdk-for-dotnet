@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class Browser
+    public class Browser : IEnum
     {
         public string Value { get; private set; }
 

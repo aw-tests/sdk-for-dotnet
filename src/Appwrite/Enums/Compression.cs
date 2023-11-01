@@ -2,7 +2,7 @@ using System;
 
 namespace Appwrite.Enums
 {
-    public class Compression
+    public class Compression : IEnum
     {
         public string Value { get; private set; }
 
